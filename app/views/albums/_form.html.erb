@@ -1,0 +1,23 @@
+<div class="panel-body">
+  <%= form_for(album) do |f| %>
+    <fieldset>
+      <div class="form-group horizontal-padding">
+      <label for="exampleInputEmail1">Artist</label><br/>
+        
+        <%= f.collection_select :artist_id, Artist.all, :id, :name,
+          prompt: 'Select a artist', include_blank: false, class: 'form-control' %>
+      </div>
+      <div class="form-group horizontal-padding">
+      <label for="exampleInputEmail1">Name</label><br/>
+        <%= f.text_field :name %>
+      </div>
+      <div class="form-group horizontal-padding">
+      <label for="exampleInputEmail1">Year</label><br/>
+        <%= f.text_field :year %>
+      </div>
+      <div class="button horizontal-padding">
+        <%= f.submit "Save", class:"btn btn-lg btn-success btn-block" %>
+      </div>
+    </fieldset>
+  <% end %>
+</div>

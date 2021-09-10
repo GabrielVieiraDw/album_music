@@ -1,0 +1,38 @@
+<% flash.each do |key, value| %>
+      <div class="<%= flash_class(key) %>">
+            <%= value %>
+      </div>
+<% end %>
+<main>
+
+ <section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Welcome to your Artists List <%= current_user.full_name %></h1>
+    </div>
+  </div>
+</section>
+
+<div class="table-responsive horizontal-padding">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+          <th> Artist ID </th>
+          <th> Artist Name </th>
+          <th> Artist Twitter </th>
+      </tr>
+    </thead>
+      <tbody>
+        <% @artists.each do |artist| %>
+          <tr>
+            <td><%= artist.id %></td>
+            <td><%= artist.name %></td>
+            <td><%= artist.twitter %></td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+  <%= paginate @artists%>
+</div>
+
+ 

@@ -1,0 +1,48 @@
+<% flash.each do |key, value| %>
+      <div class="<%= flash_class(key) %>">
+            <%= value %>
+      </div>
+<% end %>
+<main>
+
+ <section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Welcome to your Albums List <%= current_user.full_name %></h1>
+    </div>
+  </div>
+</section>
+
+<div class="table-responsive horizontal-padding">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+          <th style="width: 120px"> Album Year </th>
+          <th> Album Name </th>
+          <th> Artist </th>
+          <th>
+            <%= link_to "New", new_album_path, class: "btn btn-success", style: "width: 130px"  %>
+          </th>
+      </tr>
+    </thead>
+      <tbody>
+        <% @albums.each do |album| %>
+          <tr>
+            <td><%= album.year %></td>
+            <td><%= album.name %></td>
+            <td><%= album.artist.name %></td>
+            <td style="width: 100px">
+            <div class=btn-group>
+              <%= link_to "Edit", edit_album_path(album), class: "btn btn-primary" %>
+
+              <% unless current_user.role == "user" %>
+              <%= button_to "Delete", album_path(id: album.id), method: :delete, class: "btn btn-danger" %>
+              <% end %>
+            </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @albums%>
+</div>
