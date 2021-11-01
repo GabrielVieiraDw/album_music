@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def admin
+  def user_present
     redirect_to root_url, notice: 'you are not logged in!' unless current_user.present?
   end
 end
